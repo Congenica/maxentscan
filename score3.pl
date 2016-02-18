@@ -10,15 +10,17 @@ my @metables = &makemaxentscores;
 open (FILE,"<$inputfile") || die "can't open!\n";
 
 while(<FILE>) {
+    my $ID = '';
     chomp;
     if (/^\s*$/) { #discard blank lines;
-	next;
+	   next;
     } 
     elsif (/^>/) { #discard comment lines;
-	next;
+      $_ =~ s/>//;
+      print $_."\t";
     }
     elsif (/[NQWERYUIOPLKJHFDSZXVBM]/) {
-	next;
+	   next;
     }
     else {
         $_ =~ s/\cM//g; #gets rid of carriage return

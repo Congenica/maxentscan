@@ -23,7 +23,8 @@ while(<FILE>) {
 	next;
     } 
     elsif (/^>/) { #discard comment lines;
-	next;
+      $_ =~ s/>//;
+      print $_."\t";
     }
     else {
         $_ =~ s/\cM//g; #gets rid of carriage return
